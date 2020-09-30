@@ -4,7 +4,9 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+
+
+<h1>Goals For Today</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -13,41 +15,56 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                Goal
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Date)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CompletionStatus)
+                Completion Status
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UserId)
-            </th>
+
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CompletionStatus)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserId)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.GoalId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.GoalId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.GoalId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                @if (item.CompletionStatus == false)
+                {
+                    <td id="complete">
+                        <button id="@item.GoalId" class="btn btn-primary">Complete?</button>
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CompletionStatus)
+                    </td>
+                }
+
+
+
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.GoalId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.GoalId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.GoalId">Delete</a>
+                </td>
+            </tr>
+        }
+
     </tbody>
 </table>
+<h6>Progress</h6>
+<div class="progress">
+    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+</div>

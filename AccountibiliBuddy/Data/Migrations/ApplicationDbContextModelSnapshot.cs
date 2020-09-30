@@ -15,7 +15,7 @@ namespace AccountibiliBuddy.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.5")
+                .HasAnnotation("ProductVersion", "3.1.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -96,7 +96,7 @@ namespace AccountibiliBuddy.Data.Migrations
                         {
                             Id = "00000000-ffff-ffff-ffff-ffffffffffff",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "b522fd54-a211-4d5d-89b8-7e3bb6c5ebda",
+                            ConcurrencyStamp = "05c4c9cb-e681-4a4e-8bb3-da6212f8a898",
                             Email = "admin@admin.com",
                             EmailConfirmed = true,
                             FirstName = "Admina",
@@ -104,7 +104,7 @@ namespace AccountibiliBuddy.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN@ADMIN.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEEwMJgi8zJV+huC4ZKkohmUogzE3I05iIwbGeiT5ICgoIzbYUwMMI2GbyibUuGTZcw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEB495kq8vVXVakqdzvAp59wK8l0LLwkY9trW8ZMRkBoMN2Arir91dnx3cLEjNqN7Jw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "7f434309-a4d9-48e9-9ebb-8803db794577",
                             TwoFactorEnabled = false,
@@ -125,21 +125,23 @@ namespace AccountibiliBuddy.Data.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("GoalTypeId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(55)")
                         .HasMaxLength(55);
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UserId1")
+                    b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("GoalId");
 
-                    b.HasIndex("UserId1");
+                    b.HasIndex("GoalTypeId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Goal");
                 });
@@ -320,9 +322,15 @@ namespace AccountibiliBuddy.Data.Migrations
 
             modelBuilder.Entity("AccountibiliBuddy.Models.Goal", b =>
                 {
+                    b.HasOne("AccountibiliBuddy.Models.GoalType", "GoalType")
+                        .WithMany()
+                        .HasForeignKey("GoalTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("AccountibiliBuddy.Models.ApplicationUser", "User")
                         .WithMany()
-                        .HasForeignKey("UserId1")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

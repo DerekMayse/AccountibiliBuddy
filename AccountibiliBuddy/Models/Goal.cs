@@ -16,13 +16,18 @@ namespace AccountibiliBuddy.Models
         public string Name { get; set; }
 
         [Required]
+        [DataType(DataType.Date)]
         public DateTime Date { get; set; }
 
 
         public bool CompletionStatus { get; set; }
 
+        public int GoalTypeId { get; set; }
+
+        public GoalType GoalType { get; set; }
+
         [Required]
-        public int UserId { get; set; }
+        public string UserId { get; set; }
 
         [Required]
         public ApplicationUser User { get; set; }
