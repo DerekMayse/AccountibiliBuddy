@@ -30,6 +30,8 @@ namespace AccountibiliBuddy.Controllers
         // GET: Goals
         public async Task<IActionResult> Index()
         {
+            ProgressViewModel ViewModel = new ProgressViewModel();
+
             var applicationDbContext = _context.Goal.Include(p => p.User);
 
             var user = await GetCurrentUserAsync();
@@ -43,7 +45,25 @@ namespace AccountibiliBuddy.Controllers
                 return View("NoGoals");
             }
 
-            return View(userCheck);
+
+            var AllGoals = _context.Goal.Include(p => p.User).ToList();
+
+            var Currentuser = await GetCurrentUserAsync();
+
+            var GoalsForCurrentDay = await _context.Goal.Where(g => g.UserId == Currentuser.Id && g.Date.Date == DateTime.Now.Date && g.Date.Month == DateTime.Now.Month && g.Date.Day == DateTime.Now.Day).ToListAsync();
+
+            double TotalNumberOfGoals = GoalsForCurrentDay.Count();
+
+            double NumberOfCompletedGoals = GoalsForCurrentDay.Where(g => g.CompletionStatus == true).Count();
+
+            double CounterforProgressBar = (NumberOfCompletedGoals / TotalNumberOfGoals) * 100;
+
+            ViewModel.Goals = userCheck;
+
+            ViewModel.ProgressCounter = CounterforProgressBar;
+            ViewModel.ProgressPercent = $"{CounterforProgressBar}%";
+
+            return View(ViewModel);
         }
 
 
@@ -219,7 +239,34 @@ namespace AccountibiliBuddy.Controllers
 
         }
 
-   
 
+
+        public async Task<IActionResult> ChooseDate(DateTime DateSearch)
+        {
+            ProgressViewModel ViewModel = new ProgressViewModel();
+
+            ViewData["UserDateInput"] = DateSearch;
+
+            var applicationDbContext = _context.Goal.Include(p => p.User);
+
+            var user = await GetCurrentUserAsync();
+
+            var searchDate = applicationDbContext.Where(g => g.UserId == user.Id && g.Date.Day == DateSearch.Day && g.Date.Month == DateSearch.Month && g.Date.Year == DateSearch.Year ).ToList();
+
+            double TotalNumberOfGoals = searchDate.Count();
+
+            double NumberOfCompletedGoals = searchDate.Where(g => g.CompletionStatus == true).Count();
+
+            double CounterforProgressBar = (NumberOfCompletedGoals / TotalNumberOfGoals) * 100;
+
+            ViewModel.Goals = searchDate;
+
+            ViewModel.ProgressCounter = CounterforProgressBar;
+            ViewModel.ProgressPercent = $"{CounterforProgressBar}%";
+
+            return View(ViewModel);
+
+        }
+        
     }
 }

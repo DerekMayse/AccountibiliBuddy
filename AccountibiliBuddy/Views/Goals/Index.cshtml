@@ -1,4 +1,4 @@
-﻿@model IEnumerable<AccountibiliBuddy.Models.Goal>
+﻿@model AccountibiliBuddy.Models.ViewModels.ProgressViewModel
 
 @{
     ViewData["Title"] = "Index";
@@ -18,7 +18,7 @@
                 Goal
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Date)
+                @Html.DisplayNameFor(model => model.Goal.Date)
             </th>
             <th>
                 Completion Status
@@ -28,7 +28,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @foreach (AccountibiliBuddy.Models.Goal item in Model.Goals)
         {
 
             <tr>
@@ -64,7 +64,14 @@
 
     </tbody>
 </table>
+
+
 <h6>Progress</h6>
+
+            
 <div class="progress">
-    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+    <div class="progress-bar progress-bar-info progress-bar-striped progress-bar-animated" role="progressbar"
+         aria-valuenow="@Model.ProgressCounter" aria-valuemin="0" aria-valuemax="100" style="width: @Model.ProgressPercent ">
+        @Model.ProgressPercent
+    </div>
 </div>
