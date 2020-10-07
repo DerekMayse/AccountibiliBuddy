@@ -11,14 +11,18 @@
 
 
 
-document.querySelector("#complete").addEventListener("click", () => {
-    console.log(event.target.id)
-  
-})
+
+
 
 
 $('.carousel').carousel()
 
 
 
-    
+document.querySelectorAll("#complete").forEach(item => {
+    item.addEventListener('click', event => {
+        console.log(event.target.id)
+        fetch(`/Goals/Complete/${event.target.id}`)
+            .then(() => { window.location.reload(true) })
+    })
+})

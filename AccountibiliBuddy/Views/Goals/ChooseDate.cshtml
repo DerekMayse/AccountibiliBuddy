@@ -37,61 +37,31 @@ else if (Model.Goals.Count() >= 1)
 
             @foreach (AccountibiliBuddy.Models.Goal item in Model.Goals)
             {
-
-                @if (item.Date.Date < DateTime.Now.Date)
-                {
-                    <div class="card border-info mb-3" style="max-width: 18rem;">
-                        <div class="card-title border-info">
-                            <div class="card-header border-info">@item.Date.Month/@item.Date.Day/@item.Date.Year</div>
-                            <div class="card-body text-dark">
-                                <h5 class="card-title">@item.Name</h5>
-
-                                @if (item.CompletionStatus == true)
-                                {
-                                    <div>
-                                        @Html.DisplayFor(modelItem => item.CompletionStatus)
-                                    </div>
-                                }
-                                else if (item.CompletionStatus == false)
-                                {
-                                    <ul>
-                                        <li>Not Completed</li>
-                                    </ul>
-                                }
-
-
-
-                            </div>
+                <div class="card border-info mb-3" style="max-width: 18rem;">
+                    <div class="card-title border-info">
+                        <div class="card-header border-info">@item.Date.Month/@item.Date.Day/@item.Date.Year</div>
+                        <div class="card-body text-dark">
+                            <h5 class="card-title">@item.Name</h5>
+                            @if (item.CompletionStatus == false)
+                            {
+                                <div id="complete">
+                                    <button id="@item.GoalId" class="btn btn-primary">Complete?</button>
+                                </div>
+                            }
+                            else
+                            {
+                                <div>
+                                    @Html.DisplayFor(modelItem => item.CompletionStatus)
+                                </div>
+                            }
+                            <a asp-action="Edit" asp-route-id="@item.GoalId">Edit</a> |
+                            <a asp-action="Delete" asp-route-id="@item.GoalId">Delete</a>
                         </div>
                     </div>
-                }
-                else
-                {
-        <div class="card border-info mb-3" style="max-width: 18rem;">
-            <div class="card-title border-info">
-                <div class="card-header border-info">@item.Date.Month/@item.Date.Day/@item.Date.Year</div>
-                <div class="card-body text-dark">
-                    <h5 class="card-title">@item.Name</h5>
-                    @if (item.CompletionStatus == false)
-                    {
-                        <div id="complete">
-                            <button id="@item.GoalId" class="btn btn-primary">Complete?</button>
-                        </div>
-                    }
-                    else
-                    {
-                        <div>
-                            @Html.DisplayFor(modelItem => item.CompletionStatus)
-                        </div>
-                    }
-                    <a asp-action="Edit" asp-route-id="@item.GoalId">Edit</a> |
-                    <a asp-action="Delete" asp-route-id="@item.GoalId">Delete</a>
                 </div>
-            </div>
+
+            }
         </div>
-                        }
-                        }
-                    </div>
                 </div>
 
     <h6>Progress</h6>
