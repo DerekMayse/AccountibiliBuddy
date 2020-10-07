@@ -191,3 +191,4 @@ C:\Users\ctclocal\workspace\Capstone2\AccountibiliBuddy\AccountibiliBuddy\obj\De
 C:\Users\ctclocal\workspace\Capstone2\AccountibiliBuddy\AccountibiliBuddy\obj\Debug\netcoreapp3.1\Razor\Views\Goals\NoGoals.cshtml.g.cs
 C:\Users\ctclocal\workspace\Capstone2\AccountibiliBuddy\AccountibiliBuddy\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\Login.cshtml.g.cs
 C:\Users\ctclocal\workspace\Capstone2\AccountibiliBuddy\AccountibiliBuddy\obj\Debug\netcoreapp3.1\Razor\Views\Goals\ChooseDate.cshtml.g.cs
+C:\Users\ctclocal\workspace\Capstone2\AccountibiliBuddy\AccountibiliBuddy\obj\Debug\netcoreapp3.1\Razor\Views\Goals\Statistics.cshtml.g.cs

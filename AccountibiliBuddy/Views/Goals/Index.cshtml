@@ -11,67 +11,90 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                Goal
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Goal.Date)
-            </th>
-            <th>
-                Completion Status
-            </th>
 
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (AccountibiliBuddy.Models.Goal item in Model.Goals)
-        {
+@foreach (AccountibiliBuddy.Models.Goal item in Model.Goals)
+{
 
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
+    <div class="card border-dark mb-3" style="max-width: 18rem;">
+        <div class="card-header">@item.Date.Month/@item.Date.Day/@item.Date.Year</div>
+        <div class="card-body text-dark">
+            <h5 class="card-title">@item.Name</h5>
+            @if (item.CompletionStatus == false)
+            {
+                <div id="complete">
+                    <button id="@item.GoalId" class="btn btn-primary">Complete?</button>
+                </div>
+            }
+            else
+            {
+                <div>
+                    @Html.DisplayFor(modelItem => item.CompletionStatus)
+                </div>
+            }
+            <br />
+            <a asp-action="Edit" asp-route-id="@item.GoalId">Edit</a> |
+            <a asp-action="Delete" asp-route-id="@item.GoalId">Delete</a>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.Date)
-                </td>
-                @if (item.CompletionStatus == false)
-                {
-                    <td id="complete">
-                        <button id="@item.GoalId" class="btn btn-primary">Complete?</button>
-                    </td>
-                }
-                else
-                {
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CompletionStatus)
-                    </td>
-                }
+        </div>
+    </div>
 
 
 
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.GoalId">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.GoalId">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.GoalId">Delete</a>
-                </td>
-            </tr>
-        }
 
-    </tbody>
-</table>
+
+
+}
+
+
+
+
 
 
 <h6>Progress</h6>
 
-            
-<div class="progress">
-    <div class="progress-bar progress-bar-info progress-bar-striped progress-bar-animated" role="progressbar"
-         aria-valuenow="@Model.ProgressCounter" aria-valuemin="0" aria-valuemax="100" style="width: @Model.ProgressPercent ">
-        @Model.ProgressPercent
+@if (Model.DailyProgressCounter == 100)
+{
+    <div class="progress">
+        <div class="progress-bar  bg-success  " role="progressbar"
+             aria-valuenow="@Model.DailyProgressCounter" aria-valuemin="0" aria-valuemax="100" style="width: @Model.DailyProgressPercent ">
+            @Model.DailyProgressPercent
+        </div>
     </div>
-</div>
+}
+else if (Model.DailyProgressCounter >= 95 && Model.DailyProgressCounter <= 99)
+{
+    <div class="progress">
+        <div class="progress-bar  bg-success progress-bar-striped progress-bar-animated " role="progressbar"
+             aria-valuenow="@Model.DailyProgressCounter" aria-valuemin="0" aria-valuemax="100" style="width: @Model.DailyProgressPercent ">
+            @Model.DailyProgressPercent
+        </div>
+    </div>
+}
+else if (Model.DailyProgressCounter <= 94 && Model.DailyProgressCounter >= 80)
+{
+    <div class="progress">
+        <div class="progress-bar  bg-info progress-bar-striped progress-bar-animated" role="progressbar"
+             aria-valuenow="@Model.DailyProgressCounter" aria-valuemin="0" aria-valuemax="100" style="width: @Model.DailyProgressPercent ">
+            @Model.DailyProgressPercent
+        </div>
+    </div>
+}
+else if (Model.DailyProgressCounter <= 79 && Model.DailyProgressCounter >= 65)
+{
+    <div class="progress">
+        <div class="progress-bar  bg-warning progress-bar-striped progress-bar-animated" role="progressbar"
+             aria-valuenow="@Model.DailyProgressCounter" aria-valuemin="0" aria-valuemax="100" style="width: @Model.DailyProgressPercent ">
+            @Model.DailyProgressPercent
+        </div>
+    </div>
+}
+else
+{
+    <div class="progress">
+        <div class="progress-bar  bg-danger progress-bar-striped progress-bar-animated" role="progressbar"
+             aria-valuenow="@Model.DailyProgressCounter" aria-valuemin="0" aria-valuemax="100" style="width: @Model.DailyProgressPercent ">
+            @Model.DailyProgressPercent
+        </div>
+    </div>
+}
+

@@ -17,5 +17,8 @@ document.querySelector("#complete").addEventListener("click", () => {
 })
 
 
+$('.carousel').carousel()
+
+
 
     

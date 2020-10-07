@@ -1,0 +1,122 @@
+﻿@model AccountibiliBuddy.Models.ViewModels.ProgressViewModel
+@{
+    ViewData["Statistics"] = "Statistics";
+}
+
+<h1>My Statistics</h1>
+
+
+<br />
+
+<h3>Current Score: @Model.PointValueForCurrentDay</h3>
+<br/>
+
+<h3>You've Completed @Model.NumberOfCompletedGoalsForWeek out of @Model.NumberOfGoalsForWeek Goals for the past 7 days</h3>
+
+
+@if (Model.WeeklyProgressCounter == 100)
+{
+    <div class="progress">
+        <div class="progress-bar  bg-success  " role="progressbar"
+             aria-valuenow="@Model.WeeklyProgressCounter" aria-valuemin="0" aria-valuemax="100" style="width: @Model.WeeklyProgressPercent ">
+            @Model.WeeklyProgressPercent
+        </div>
+    </div>
+}
+else if (Model.WeeklyProgressCounter >= 95 && Model.WeeklyProgressCounter <= 99)
+{
+    <div class="progress">
+        <div class="progress-bar  bg-success progress-bar-striped progress-bar-animated " role="progressbar"
+             aria-valuenow="@Model.WeeklyProgressCounter" aria-valuemin="0" aria-valuemax="100" style="width: @Model.WeeklyProgressPercent ">
+            @Model.WeeklyProgressPercent
+        </div>
+    </div>
+}
+else if (Model.WeeklyProgressCounter <= 94 && Model.WeeklyProgressCounter >= 80)
+{
+    <div class="progress">
+        <div class="progress-bar  bg-info progress-bar-striped progress-bar-animated" role="progressbar"
+             aria-valuenow="@Model.WeeklyProgressCounter" aria-valuemin="0" aria-valuemax="100" style="width: @Model.WeeklyProgressPercent ">
+            @Model.WeeklyProgressPercent
+        </div>
+    </div>
+}
+else if (Model.WeeklyProgressCounter <= 79 && Model.WeeklyProgressCounter >= 65)
+{
+    <div class="progress">
+        <div class="progress-bar  bg-warning progress-bar-striped progress-bar-animated" role="progressbar"
+             aria-valuenow="@Model.DailyProgressCounter" aria-valuemin="0" aria-valuemax="100" style="width: @Model.WeeklyProgressPercent ">
+            @Model.WeeklyProgressPercent
+        </div>
+    </div>
+}
+else
+{
+    <div class="progress">
+        <div class="progress-bar  bg-danger progress-bar-striped progress-bar-animated" role="progressbar"
+             aria-valuenow="@Model.WeeklyProgressCounter" aria-valuemin="0" aria-valuemax="100" style="width: @Model.WeeklyProgressPercent ">
+            @Model.WeeklyProgressPercent
+        </div>
+    </div>
+}
+<p>Updated Daily</p>
+<br />
+
+<h3>You've Completed @Model.NumberOfCompletedGoalsForMonth out of @Model.NumberOfGoalsForMonth Goals for the past 30 days</h3>
+
+
+@if (Model.MonthlyProgressCounter == 100)
+{
+    <div class="progress">
+        <div class="progress-bar  bg-success  " role="progressbar"
+             aria-valuenow="@Model.MonthlyProgressCounter" aria-valuemin="0" aria-valuemax="100" style="width: @Model.MonthlyProgressPercent ">
+            @Model.MonthlyProgressPercent
+        </div>
+    </div>
+}
+else if (Model.MonthlyProgressCounter >= 95 && Model.MonthlyProgressCounter <= 99)
+{
+    <div class="progress">
+        <div class="progress-bar  bg-success progress-bar-striped progress-bar-animated " role="progressbar"
+             aria-valuenow="@Model.MonthlyProgressCounter" aria-valuemin="0" aria-valuemax="100" style="width: @Model.MonthlyProgressPercent ">
+            @Model.MonthlyProgressPercent
+        </div>
+    </div>
+}
+else if (Model.MonthlyProgressCounter <= 94 && Model.MonthlyProgressCounter >= 80)
+{
+    <div class="progress">
+        <div class="progress-bar  bg-info progress-bar-striped progress-bar-animated" role="progressbar"
+             aria-valuenow="@Model.MonthlyProgressCounter" aria-valuemin="0" aria-valuemax="100" style="width: @Model.MonthlyProgressPercent ">
+            @Model.MonthlyProgressPercent
+        </div>
+    </div>
+}
+else if (Model.MonthlyProgressCounter <= 79 && Model.MonthlyProgressCounter >= 65)
+{
+    <div class="progress">
+        <div class="progress-bar  bg-warning progress-bar-striped progress-bar-animated" role="progressbar"
+             aria-valuenow="@Model.MonthlyProgressCounter" aria-valuemin="0" aria-valuemax="100" style="width: @Model.MonthlyProgressPercent ">
+            @Model.MonthlyProgressPercent
+        </div>
+    </div>
+}
+else
+{
+    <div class="progress">
+        <div class="progress-bar  bg-danger progress-bar-striped progress-bar-animated" role="progressbar"
+             aria-valuenow="@Model.MonthlyProgressCounter" aria-valuemin="0" aria-valuemax="100" style="width: @Model.MonthlyProgressPercent ">
+            @Model.MonthlyProgressPercent
+        </div>
+    </div>
+}
+<p>Updated Daily</p>
+<br />
+
+
+
+
+<br />
+
+<h3>Average Score:@Model.AveragePoints</h3>
+<p>based off of the past 7 days</p>
