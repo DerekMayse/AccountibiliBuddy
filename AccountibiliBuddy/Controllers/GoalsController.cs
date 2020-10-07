@@ -355,7 +355,7 @@ namespace AccountibiliBuddy.Controllers
 
             int WeeklyPointCounterStartingPoint = 0;
 
-            int MonthlyPointCounterStartingPoint = 0;
+            
 
              foreach (Goal goal in GoalsForCurrentDay)
             {

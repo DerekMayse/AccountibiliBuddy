@@ -12,8 +12,8 @@
 
 
 document.querySelector("#complete").addEventListener("click", () => {
-    fetch(`/Goals/Complete/${event.target.id}`)
-        .then(() => { window.location.reload(true) })
+    console.log(event.target.id)
+  
 })
 
 
