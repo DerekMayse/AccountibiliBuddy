@@ -22,6 +22,7 @@ namespace AccountibiliBuddy.Models
 
         public bool CompletionStatus { get; set; }
 
+        [Required (ErrorMessage = "Pleae select a Goal Type")]
         public int GoalTypeId { get; set; }
 
         public GoalType GoalType { get; set; }

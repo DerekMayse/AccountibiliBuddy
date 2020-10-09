@@ -19,7 +19,7 @@
            
             <div class="form-group">
                 <label asp-for="Goal.Date" class="control-label"></label>
-                <input asp-for="Goal.Date" class="form-control"   />
+                <input asp-for="Goal.Date" class="form-control" required="" oninvalid="this.setCustomValidity('The Goal Type field is required.')"  />
                 <span asp-validation-for="Goal.Date" class="text-danger"></span>
             </div>
             <div class="form-group"> 

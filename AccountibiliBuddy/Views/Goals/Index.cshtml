@@ -72,7 +72,7 @@
                     </div>
                 </div>
             }
-            else if (Model.DailyProgressCounter >= 95 && Model.DailyProgressCounter <= 99)
+            else if (Model.DailyProgressCounter <=99.9 && Model.DailyProgressCounter >=90)
             {
                 <div class="progress">
                     <div class="progress-bar  bg-success progress-bar-striped progress-bar-animated " role="progressbar"
@@ -81,7 +81,7 @@
                     </div>
                 </div>
             }
-            else if (Model.DailyProgressCounter <= 94 && Model.DailyProgressCounter >= 80)
+            else if (Model.DailyProgressCounter <=89.9 && Model.DailyProgressCounter >= 80)
             {
                 <div class="progress">
                     <div class="progress-bar  bg-info progress-bar-striped progress-bar-animated" role="progressbar"
@@ -90,7 +90,7 @@
                     </div>
                 </div>
             }
-            else if (Model.DailyProgressCounter <= 79 && Model.DailyProgressCounter >= 65)
+            else if (Model.DailyProgressCounter <= 79.9 && Model.DailyProgressCounter >= 60)
             {
                 <div class="progress">
                     <div class="progress-bar  bg-warning progress-bar-striped progress-bar-animated" role="progressbar"
@@ -99,7 +99,7 @@
                     </div>
                 </div>
             }
-            else
+            else if(Model.DailyProgressCounter <= 59.9 && Model.DailyProgressCounter >= 0)
             {
                 <div class="progress">
                     <div class="progress-bar  bg-danger progress-bar-striped progress-bar-animated" role="progressbar"

@@ -4,14 +4,16 @@ using AccountibiliBuddy.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AccountibiliBuddy.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201008153753_GoalTypeErrorMessage")]
+    partial class GoalTypeErrorMessage
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -96,7 +98,7 @@ namespace AccountibiliBuddy.Data.Migrations
                         {
                             Id = "00000000-ffff-ffff-ffff-ffffffffffff",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "8972ec58-2634-47b7-b4a3-9912557e4805",
+                            ConcurrencyStamp = "019663ec-7f0c-49c7-8d6c-fb1fcb47bef8",
                             Email = "admin@admin.com",
                             EmailConfirmed = true,
                             FirstName = "Admina",
@@ -104,7 +106,7 @@ namespace AccountibiliBuddy.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN@ADMIN.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAECXyZt20yCyOgL+9q5zWUj5KOeNjHfXEVKx5a1JIrYkVG9A8nXjv+tS23boCcd5gaw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGKVUUeWEt8cjSGGyrIb0aL7N16oyzHOX/tI1Wo2rLLEU4lZDesi+OYx++Oy9ooBWA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "7f434309-a4d9-48e9-9ebb-8803db794577",
                             TwoFactorEnabled = false,
