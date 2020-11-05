@@ -113,7 +113,7 @@ namespace AccountibiliBuddy.Controllers
             }
         ).ToList();
 
-            ViewModel.GoalTypes.Insert(0, new SelectListItem() { Value = "0", Text = "Choose A Goal Type" });
+            ViewModel.GoalTypes.Insert(0, new SelectListItem() { Value = "-1", Text = "Choose A Goal Type" });
 
             ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id");
             return View(ViewModel);
@@ -132,7 +132,7 @@ namespace AccountibiliBuddy.Controllers
             //removes the user and userid so the model state doesnt think that the information is invalid
             ModelState.Remove("Goal.User");
             ModelState.Remove("Goal.UserId");
-            if (ModelState.IsValid)
+            if (ModelState.IsValid )
             {
                 //gets the current user
                 var user = await GetCurrentUserAsync();
@@ -142,11 +142,11 @@ namespace AccountibiliBuddy.Controllers
                 viewModel.Goal.CompletionStatus = false;
                 _context.Add(viewModel.Goal);
                 await _context.SaveChangesAsync();
+
                 return RedirectToAction(nameof(Index));
             }
-            //ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", goal.UserId);
-            //ViewData["GoalTypeId"] = new SelectList(_context.GoalType, "Id", "Id", goal.GoalTypeId);
-            return View(viewModel.Goal);
+       
+            return View(viewModel);
         }
         [Authorize]
         // GET: Goals/Edit/5
@@ -166,6 +166,8 @@ namespace AccountibiliBuddy.Controllers
 
             ViewModel.Goal = await _context.Goal
             .FirstOrDefaultAsync(m => m.GoalId == id);
+            
+
 
             ViewModel.GoalTypes = _context.GoalType.Select(gt => new SelectListItem
 
@@ -193,6 +195,7 @@ namespace AccountibiliBuddy.Controllers
 
             ModelState.Remove("Goal.User");
             ModelState.Remove("Goal.UserId");
+            
             if (ModelState.IsValid)
             {
                 try
@@ -200,6 +203,10 @@ namespace AccountibiliBuddy.Controllers
                     var user = await GetCurrentUserAsync();
                     //grabs the current user's id
                     viewModel.Goal.UserId = user.Id;
+                    viewModel.Goal.CompletionStatus = viewModel.Goal.CompletionStatus;
+
+
+
                     _context.Update(viewModel.Goal);
                     await _context.SaveChangesAsync();
                 }

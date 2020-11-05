@@ -41,8 +41,16 @@
                                     </div>
                                 }
                                 <br />
-                                <a asp-action="Edit" asp-route-id="@item.GoalId">Edit</a> |
-                                <a asp-action="Delete" asp-route-id="@item.GoalId">Delete</a>
+                                @if (item.CompletionStatus == false)
+                                {
+                                    <a asp-action="Edit" asp-route-id="@item.GoalId">Edit</a> 
+                                    <a asp-action="Delete" asp-route-id ="@item.GoalId"> Delete </a>
+                                }
+                                else if (item.CompletionStatus == true)
+                                {
+
+                                }
+
 
                             </div>
                         </div>

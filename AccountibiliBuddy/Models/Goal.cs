@@ -22,7 +22,11 @@ namespace AccountibiliBuddy.Models
 
         public bool CompletionStatus { get; set; }
 
-        [Required (ErrorMessage = "Pleae select a Goal Type")]
+        [Required]  
+        
+        [RegularExpression("([1-9][0-9]*)",
+         ErrorMessage = "Please Choose A Goal Type")]
+
         public int GoalTypeId { get; set; }
 
         public GoalType GoalType { get; set; }
